@@ -19,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+import com.amazon.opendistro.elasticsearch.performanceanalyzer.util.TestUtil;
 import java.io.IOException;
 import org.apache.commons.lang3.SystemUtils;
 import org.elasticsearch.transport.TransportChannel;
@@ -45,6 +46,9 @@ public class PerformanceAnalyzerTransportChannelTests {
         assertEquals("PerformanceAnalyzerTransportChannelProfile", channel.getProfileName());
         assertEquals("PerformanceAnalyzerTransportChannelType", channel.getChannelType());
         assertEquals(originalChannel, channel.getInnerChannel());
+
+        //clean metricQueue before running every test
+        TestUtil.readEvents();
     }
 
     @Test

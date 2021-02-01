@@ -22,6 +22,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 import com.amazon.opendistro.elasticsearch.performanceanalyzer.config.PerformanceAnalyzerController;
+import com.amazon.opendistro.elasticsearch.performanceanalyzer.util.TestUtil;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.ActionRequest;
 import org.elasticsearch.action.ActionResponse;
@@ -52,6 +53,9 @@ public class PerformanceAnalyzerActionFilterTests {
 
     Mockito.when(controller.isPerformanceAnalyzerEnabled()).thenReturn(true);
     filter = new PerformanceAnalyzerActionFilter((controller));
+
+    //clean metricQueue before running every test
+    TestUtil.readEvents();
   }
 
   @Test
